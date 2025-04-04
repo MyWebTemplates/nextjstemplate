@@ -1,64 +1,111 @@
+"use client";
+
+import { useState } from "react";
 import { Mail, Lock } from "lucide-react";
 
 export default function LoginPage() {
-    return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
-            <div className="flex w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden">
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [errors, setErrors] = useState({ email: "", senha: "" });
 
-                {/* Lado esquerdo com background diferenciado */}
-                <div className="hidden md:flex md:w-1/2 bg-blue-600 text-white items-center justify-center p-16">
-                    <h2 className="text-4xl font-bold animate-fade-in">Bem-vindo!</h2>
+    const validateForm = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        const newErrors = { email: "", senha: "" };
+
+        if (!email) {
+            newErrors.email = "O e-mail é obrigatório.";
+        }
+
+        if (!senha) {
+            newErrors.senha = "A senha é obrigatória.";
+        }
+
+        setErrors(newErrors);
+
+        if (!newErrors.email && !newErrors.senha) {
+            console.log("Login autorizado!");
+            // Aqui você pode prosseguir com o login
+        }
+    };
+
+    return (
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-100 to-blue-200 p-8">
+            <div className="flex w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden">
+
+                {/* Lado esquerdo */}
+                <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white items-center justify-center p-16 min-h-[500px]">
+                    <div className="text-center max-w-lg">
+                        <h1 className="text-5xl font-extrabold leading-tight">
+                            Bem-vindo ao Sistema HUOC!
+                        </h1>
+                        <h2 className="text-2xl font-semibold mt-4">
+                            Otimizamos a gestão e armazenamento de dados clínicos.
+                        </h2>
+                        <p className="text-lg mt-6 leading-relaxed">
+                            Conte com tecnologia de ponta para um acesso seguro e eficiente às informações que você precisa!
+                        </p>
+                    </div>
                 </div>
 
                 {/* Lado direito - Formulário */}
-                <div className="w-full md:w-1/2 p-12 space-y-8">
-                    <form className="space-y-8">
-                        <div className="relative">
-                            <label className="block text-gray-700">E-mail</label>
-                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                <span className="p-3 bg-gray-100 text-gray-500">
-                                    <Mail size={20} />
+                <div className="w-full md:w-1/2 flex flex-col justify-center px-16 py-20 bg-white min-h-[500px]">
+                    <form onSubmit={validateForm} className="flex flex-col gap-6">
+                        {/* Campo E-mail */}
+                        <div className="flex flex-col gap-2">
+                            <label className="text-gray-700 text-lg font-medium">E-mail</label>
+                            <div className={`flex items-center border rounded-xl bg-gray-50 overflow-hidden ${errors.email ? "border-red-500" : "border-gray-300"}`}>
+                                <span className="p-4 bg-gray-100 text-gray-500">
+                                    <Mail size={22} />
                                 </span>
                                 <input
                                     type="email"
-                                    className="w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="w-full p-4 text-lg focus:outline-none bg-transparent"
                                     placeholder="Digite seu e-mail"
                                 />
                             </div>
+                            {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
                         </div>
 
-                        <div className="relative">
-                            <label className="block text-gray-700">Senha</label>
-                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                <span className="p-3 bg-gray-100 text-gray-500">
-                                    <Lock size={20} />
+                        {/* Campo Senha */}
+                        <div className="flex flex-col gap-2">
+                            <label className="text-gray-700 text-lg font-medium">Senha</label>
+                            <div className={`flex items-center border rounded-xl bg-gray-50 overflow-hidden ${errors.senha ? "border-red-500" : "border-gray-300"}`}>
+                                <span className="p-4 bg-gray-100 text-gray-500">
+                                    <Lock size={22} />
                                 </span>
                                 <input
                                     type="password"
-                                    className="w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
+                                    className="w-full p-4 text-lg focus:outline-none bg-transparent"
                                     placeholder="Digite sua senha"
                                 />
                             </div>
+                            {errors.senha && <span className="text-red-500 text-sm">{errors.senha}</span>}
                         </div>
 
-                        <div className="flex items-center justify-between text-sm text-gray-600">
+                        {/* Lembrar-me + Esqueci a senha */}
+                        <div className="flex items-center justify-between text-sm text-gray-600 mt-2">
                             <label className="flex items-center">
                                 <input type="checkbox" className="mr-2" />
                                 Lembrar-me
                             </label>
-                            <a href="#" className="text-blue-600 hover:underline">Esqueci minha senha</a>
+                            <a href="#" className="text-teal-600 hover:underline">Esqueci minha senha</a>
                         </div>
 
-                        <div className="flex space-x-6">
+                        {/* Botões */}
+                        <div className="flex gap-4 pt-4">
                             <button
                                 type="submit"
-                                className="w-1/2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+                                className="flex-1 bg-teal-600 text-white py-4 rounded-xl hover:bg-teal-700 transition-all duration-300 transform hover:scale-105 text-lg font-semibold"
                             >
                                 Entrar
                             </button>
                             <button
                                 type="button"
-                                className="w-1/2 bg-gray-300 text-gray-800 py-3 rounded-lg hover:bg-gray-400 transition-all duration-300 transform hover:scale-105"
+                                className="flex-1 bg-gray-300 text-gray-800 py-4 rounded-xl hover:bg-gray-400 transition-all duration-300 transform hover:scale-105 text-lg font-semibold"
                             >
                                 Cadastrar
                             </button>
