@@ -30,10 +30,10 @@ export default function LoginPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-100 to-blue-200 p-8">
-            <div className="flex w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div className="flex w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl bg-white/30 backdrop-blur-md border border-white/40">
 
-                {/* Lado esquerdo */}
-                <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white items-center justify-center p-16 min-h-[500px]">
+                {/* Lado esquerdo - Mensagem */}
+                <div className="hidden md:flex md:w-1/2 bg-teal-600/90 text-white items-center justify-center p-16 min-h-[500px]">
                     <div className="text-center max-w-lg">
                         <h1 className="text-5xl font-extrabold leading-tight">
                             Bem-vindo ao Sistema HUOC!
@@ -48,11 +48,13 @@ export default function LoginPage() {
                 </div>
 
                 {/* Lado direito - Formulário */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center px-16 py-20 bg-white min-h-[500px]">
+                <div className="w-full md:w-1/2 p-16 flex flex-col justify-center min-h-[500px]">
                     <form onSubmit={validateForm} className="flex flex-col gap-6">
+                        <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">Login</h2>
+
                         {/* Campo E-mail */}
                         <div className="flex flex-col gap-2">
-                            <label className="text-gray-700 text-lg font-medium">E-mail</label>
+                            <label className="text-gray-700 text-lg">E-mail</label>
                             <div className={`flex items-center border rounded-xl bg-gray-50 overflow-hidden ${errors.email ? "border-red-500" : "border-gray-300"}`}>
                                 <span className="p-4 bg-gray-100 text-gray-500">
                                     <Mail size={22} />
@@ -70,7 +72,7 @@ export default function LoginPage() {
 
                         {/* Campo Senha */}
                         <div className="flex flex-col gap-2">
-                            <label className="text-gray-700 text-lg font-medium">Senha</label>
+                            <label className="text-gray-700 text-lg">Senha</label>
                             <div className={`flex items-center border rounded-xl bg-gray-50 overflow-hidden ${errors.senha ? "border-red-500" : "border-gray-300"}`}>
                                 <span className="p-4 bg-gray-100 text-gray-500">
                                     <Lock size={22} />
@@ -87,7 +89,7 @@ export default function LoginPage() {
                         </div>
 
                         {/* Lembrar-me + Esqueci a senha */}
-                        <div className="flex items-center justify-between text-sm text-gray-600 mt-2">
+                        <div className="flex items-center justify-between text-sm text-gray-600">
                             <label className="flex items-center">
                                 <input type="checkbox" className="mr-2" />
                                 Lembrar-me
@@ -107,7 +109,7 @@ export default function LoginPage() {
                                 type="button"
                                 className="flex-1 bg-gray-300 text-gray-800 py-4 rounded-xl hover:bg-gray-400 transition-all duration-300 transform hover:scale-105 text-lg font-semibold"
                             >
-                                Cadastrar
+                                Cadastre-se
                             </button>
                         </div>
                     </form>
