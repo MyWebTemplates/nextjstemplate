@@ -8,8 +8,9 @@ export default function CadastroPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-100 to-blue-200 p-8">
-            <div className="flex w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden">
-                <div className="w-full md:w-1/2 p-16 flex flex-col justify-center min-h-[500px] bg-white">
+            <div className="flex w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl bg-white/30 backdrop-blur-md border border-white/40">
+                {/* Lado esquerdo - Formulário */}
+                <div className="w-full md:w-1/2 p-16 flex flex-col justify-center min-h-[500px]">
                     <h2 className="text-3xl font-bold text-center text-teal-700 mb-6">Cadastro</h2>
                     <form className="flex flex-col gap-6">
                         <div className="grid grid-cols-2 gap-6">
@@ -136,7 +137,7 @@ export default function CadastroPage() {
                 </div>
 
                 {/* Lado direito - Mensagem */}
-                <div className="hidden md:flex md:w-1/2 bg-teal-600 text-white items-center justify-center p-16 min-h-[500px]">
+                <div className="hidden md:flex md:w-1/2 bg-teal-600/90 text-white items-center justify-center p-16 min-h-[500px]">
                     <div className="text-center max-w-lg">
                         <h1 className="text-5xl font-extrabold leading-tight">
                             Bem-vindo ao Sistema HUOC!
